@@ -18,7 +18,7 @@ public class Main {
                 switch (question.getType()){
                     case 0:  //Без вариантов ответов. Считываем ответ и сравниваем
                         {
-                            System.out.print("Ответ: ");
+                            System.out.print("Answer: ");
                             String userAnswer = sc.nextLine();
                             if(question.getAnswers().size() > 0 && question.getAnswers().get(0).equals(userAnswer)) {
                                 result++;
@@ -32,7 +32,7 @@ public class Main {
                                 num++;
                                 System.out.println(num+"\t"+answer);
                             }
-                            System.out.print("Номер ответа: ");
+                            System.out.print("Number: ");
                             Integer userAnswer = sc.nextInt();
                             if (userAnswer.equals(question.getValue())) {
                                 result++;
@@ -41,7 +41,7 @@ public class Main {
                         break;
                 }
             }
-            System.out.println("Результат: "+result+" правильных ответов из "+service.getCount());
+            System.out.println("Result: "+result+" points out of "+service.getCount());
         }
     }
 }

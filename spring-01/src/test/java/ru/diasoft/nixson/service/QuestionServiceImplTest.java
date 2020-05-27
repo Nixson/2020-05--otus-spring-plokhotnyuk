@@ -32,7 +32,7 @@ public class QuestionServiceImplTest {
 
     @DisplayName("getNext")
     @Test
-    void getNext(){
+    void getNext() {
         given(questionDao.getNext())
                 .willReturn(QuestionUtil.getQuestion());
 
@@ -41,7 +41,7 @@ public class QuestionServiceImplTest {
 
     @DisplayName("getCount")
     @Test
-    void getCount(){
+    void getCount() {
         given(questionDao.getSize())
                 .willReturn(5);
         assertThat(questionService.getCount()).isEqualTo(5);
@@ -49,7 +49,7 @@ public class QuestionServiceImplTest {
 
     @DisplayName("getAll")
     @Test
-    void getAll(){
+    void getAll() {
         List<Question> questionList = QuestionUtil.getList();
         given(questionDao.getList())
                 .willReturn(questionList);

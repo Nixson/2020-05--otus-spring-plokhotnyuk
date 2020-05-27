@@ -7,7 +7,8 @@ import java.util.List;
 
 public class QuestionServiceImpl implements QuestionService {
     private final QuestionDao dao;
-    public QuestionServiceImpl(QuestionDao dao){
+
+    public QuestionServiceImpl(QuestionDao dao) {
         this.dao = dao;
     }
 

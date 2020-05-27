@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface QuestionDao {
     Question getNext();
+
     List<Question> getList();
+
     Integer getSize();
 }

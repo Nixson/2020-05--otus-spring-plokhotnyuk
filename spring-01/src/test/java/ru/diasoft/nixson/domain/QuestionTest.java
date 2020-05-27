@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuestionTest {
     @DisplayName("корректно передаются поля")
     @Test
-    void shouldHaveCorrectElements(){
+    void shouldHaveCorrectElements() {
         Question question = QuestionUtil.getQuestion();
-        assertEquals(1L,question.getId());
-        assertEquals("Question",question.getText());
-        assertEquals(1,question.getType());
-        assertEquals(2,question.getValue());
-        assertLinesMatch(QuestionUtil.getAnswer(),question.getAnswers());
+        assertEquals(1L, question.getId());
+        assertEquals("Question", question.getText());
+        assertEquals(1, question.getType());
+        assertEquals(2, question.getValue());
+        assertLinesMatch(QuestionUtil.getAnswer(), question.getAnswers());
     }
 }
