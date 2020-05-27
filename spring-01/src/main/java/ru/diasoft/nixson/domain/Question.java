@@ -11,9 +11,9 @@ import java.util.List;
 @Setter
 @ToString
 public class Question {
-    private Long Id;
-    private String Text;
-    private Integer Type;
-    private Integer Value;
-    private List<String> Answers;
+    private Long id;
+    private String text;
+    private Integer type;
+    private Integer value;
+    private List<String> answers;
 }

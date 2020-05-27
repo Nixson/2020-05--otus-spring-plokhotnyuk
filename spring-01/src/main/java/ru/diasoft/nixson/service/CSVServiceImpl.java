@@ -17,8 +17,6 @@ public class CSVServiceImpl implements CSVService {
         try {
             URL url = getClass().getResource(filePath);
             Path path = Paths.get(url.toURI());
-            System.out.println(url);
-            System.out.println(path);
             List<String> fileLines = Files.readAllLines(path, StandardCharsets.UTF_8);
             for (String fileLine : fileLines) {
                 response.add(new ArrayList<String>(Arrays.asList(fileLine.split(";"))));
