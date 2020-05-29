@@ -7,10 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionDaoImpl implements QuestionDao {
-    private final List<Question> listQuestions;
+    private List<Question> listQuestions;
+    private CSVService csvService;
+    private String path;
     private int index = 0;
 
     public QuestionDaoImpl(String path, CSVService csvService) {
+        this.path = path;
+        this.csvService = csvService;
+    }
+    private void loadQuestions(){
+        if (listQuestions!=null) {
+            return;
+        }
         listQuestions = new ArrayList<Question>();
         List<List<String>> questionArray = csvService.parse(path);
         Long id = 0L;
@@ -36,20 +45,14 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
-    public Question getNext() {
-        if (listQuestions.size() < index) {
-            return null;
-        }
-        return listQuestions.get(index++);
-    }
-
-    @Override
     public List<Question> getList() {
+        loadQuestions();
         return listQuestions;
     }
 
     @Override
     public Integer getSize() {
+        loadQuestions();
         return listQuestions.size();
     }
 }

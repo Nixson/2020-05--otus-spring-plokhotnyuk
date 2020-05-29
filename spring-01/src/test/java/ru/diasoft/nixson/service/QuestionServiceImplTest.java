@@ -30,15 +30,6 @@ public class QuestionServiceImplTest {
         questionService = new QuestionServiceImpl(questionDao);
     }
 
-    @DisplayName("getNext")
-    @Test
-    void getNext() {
-        given(questionDao.getNext())
-                .willReturn(QuestionUtil.getQuestion());
-
-        assertThat(questionService.getNext()).isNotNull();
-    }
-
     @DisplayName("getCount")
     @Test
     void getCount() {

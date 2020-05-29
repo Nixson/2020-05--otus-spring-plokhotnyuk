@@ -12,4 +12,7 @@
     <bean id="questionService" class="ru.diasoft.nixson.service.QuestionServiceImpl">
         <constructor-arg name="dao" ref="questionDao"></constructor-arg>
     </bean>
+    <bean id="ViewService" class="ru.diasoft.nixson.service.ViewServiceImpl">
+        <constructor-arg name="service" ref="questionService"></constructor-arg>
+    </bean>
 </beans>

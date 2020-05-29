@@ -13,11 +13,6 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question getNext() {
-        return dao.getNext();
-    }
-
-    @Override
     public List<Question> getAll() {
         return dao.getList();
     }
