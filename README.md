@@ -1,4 +1,5 @@
-# 2020-05-otus-spring-plokhotnyuk
-Плохотнюк Артем Николаевич
-Курс 2020-05 Разработчик на Spring Framework
+# 2020-05 Разработка на Spring Framework
+### Плохотнюк Артем Николаевич
+*Diasoft*
+
 Работа #1 - spring-01
