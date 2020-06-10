@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.diasoft.nixson.dao.QuestionDao;
 import ru.diasoft.nixson.domain.Question;
+import ru.diasoft.nixson.util.QuestionType;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class QuestionServiceImpl implements QuestionService {
         for (Question question : dao.getList()) {
             ioService.writeLn(question.getText());
             switch (question.getType()) {
-                case 0:  //Без вариантов ответов. Считываем ответ и сравниваем
+                case TEXT:  //Без вариантов ответов. Считываем ответ и сравниваем
                 {
                     ioService.write("Answer: ");
                     String userAnswer = ioService.read();
@@ -49,7 +50,7 @@ public class QuestionServiceImpl implements QuestionService {
                     }
                 }
                 break;
-                case 1: //С выбором вариантов
+                case NUMBER: //С выбором вариантов
                 {
                     int num = 0;
                     for (String answer : question.getAnswers()) {

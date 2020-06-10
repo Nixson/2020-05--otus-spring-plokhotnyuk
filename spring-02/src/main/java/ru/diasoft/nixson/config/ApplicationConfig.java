@@ -13,6 +13,6 @@ import java.util.Scanner;
 public class ApplicationConfig {
     @Bean
     IOService ioService() {
-        return new IOServiceImpl(new Scanner(System.in),new PrintStream(System.out));
+        return new IOServiceImpl(new Scanner(System.in), new PrintStream(System.out));
     }
 }

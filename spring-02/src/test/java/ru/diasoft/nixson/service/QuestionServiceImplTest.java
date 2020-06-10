@@ -19,7 +19,6 @@ import static org.mockito.BDDMockito.given;
 @DisplayName("Класс QuestionServiceImplTest")
 public class QuestionServiceImplTest {
 
-
     @Mock
     private QuestionDao questionDao;
 
@@ -30,7 +29,7 @@ public class QuestionServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        questionService = new QuestionServiceImpl(questionDao,ioService,4);
+        questionService = new QuestionServiceImpl(questionDao, ioService, 4);
     }
 
     @DisplayName("getCount")

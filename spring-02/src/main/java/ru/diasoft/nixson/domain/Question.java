@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.diasoft.nixson.util.QuestionType;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Question {
     private Integer id;
     private String text;
-    private Integer type;
+    private QuestionType type;
     private Integer value;
     private List<String> answers;
 }
