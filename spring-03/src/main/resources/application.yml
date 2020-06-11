@@ -1,0 +1,7 @@
+application:
+  locale: ru_RU
+
+question:
+  min-answer: 3
+  file-name: /questions_${application.locale}.csv
+  delimiter: ;
