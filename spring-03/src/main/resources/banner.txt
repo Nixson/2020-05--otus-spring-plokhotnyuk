@@ -1,0 +1,7 @@
+${Ansi.RED}      ::::    :::${AnsiColor.WHITE}       :::    :::${Ansi.RED}   :::::::::::${AnsiColor.WHITE}       ::::::::::       ::::::::   :::::::::::
+${Ansi.RED}     :+:+:   :+: ${AnsiColor.WHITE}      :+:    :+: ${Ansi.RED}      :+:     ${AnsiColor.WHITE}      :+:             :+:    :+:      :+:
+${Ansi.RED}    :+:+:+  +:+  ${AnsiColor.WHITE}      +:+  +:+   ${Ansi.RED}     +:+      ${AnsiColor.WHITE}     +:+             +:+             +:+
+${Ansi.RED}   +#+ +:+ +#+   ${AnsiColor.WHITE}      +#++:+     ${Ansi.RED}    +#+       ${AnsiColor.WHITE}    +#++:++#        +#++:++#++      +#+
+${Ansi.RED}  +#+  +#+#+#    ${AnsiColor.WHITE}    +#+  +#+     ${Ansi.RED}   +#+        ${AnsiColor.WHITE}   +#+                    +#+      +#+
+${Ansi.RED} #+#   #+#+#     ${AnsiColor.WHITE}  #+#    #+#     ${Ansi.RED}  #+#         ${AnsiColor.WHITE}  #+#             #+#    #+#      #+#
+${Ansi.RED}###    ####      ${AnsiColor.WHITE} ###    ###      ${Ansi.RED} ###          ${AnsiColor.WHITE} ##########       ########       ###
