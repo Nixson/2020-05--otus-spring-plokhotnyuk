@@ -1,0 +1,7 @@
+application:
+  locale: en
+
+question:
+  min-answer: 3
+  file-name: /questions_en.csv
+  delimiter: ;
