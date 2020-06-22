@@ -1,0 +1,13 @@
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+application:
+  locale: ru_RU
+
+question:
+  min-answer: 3
+  file-name: /questions_${application.locale}.csv
+  delimiter: ;
