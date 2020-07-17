@@ -55,12 +55,4 @@ public class GenreRepositoryImpl implements GenreRepository {
         query.setParameter("name", "%" + name + "%");
         return Optional.of(query.getSingleResult());
     }
-
-    @Override
-    public void update(Genre genre) {
-        Query query = entityManager.createQuery("update Genre g set g.name = :name where g.id = :id");
-        query.setParameter("id", genre.getId());
-        query.setParameter("name", genre.getName());
-        query.executeUpdate();
-    }
 }

@@ -78,17 +78,6 @@ class CommentRepositoryImplTest {
     }
 
     @Test
-    void findByBookId() {
-        Book book = getBook("bookName", "Роджер Желязны", "Зарубежная фантастика", "2000", "dessd gs");
-        em.persist(book);
-        Comment comment1 = Comment.builder().content("COMMENT 1").book(book).build();
-        em.persist(comment1);
-
-        assertThat(commentRepository.findByBookId(book.getId()))
-                .containsOnly(comment1);
-    }
-
-    @Test
     void deleteById() {
         Book book = getBook("bookName", "Роджер Желязны", "Зарубежная фантастика", "2000", "dessd gs");
         em.persist(book);

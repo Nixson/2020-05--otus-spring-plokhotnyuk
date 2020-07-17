@@ -37,7 +37,7 @@ class GenreRepositoryImplTest {
         Genre genre = Genre.builder().name(NAME).build();
         em.persist(genre);
         genre.setName("newName");
-        genreDao.update(genre);
+        genreDao.save(genre);
         assertThat(em.find(Genre.class,genre.getId()))
                 .isEqualToComparingFieldByField(genre);
     }

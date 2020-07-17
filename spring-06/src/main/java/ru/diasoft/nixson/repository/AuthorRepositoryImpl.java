@@ -57,14 +57,4 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         query.setParameter("name", "%" + name + "%");
         return Optional.of(query.getSingleResult());
     }
-
-    @Transactional
-    @Override
-    public void update(Author author) {
-        Query query = entityManager.createQuery("update Author a set a.name = :name where a.id = :id");
-        query.setParameter("id", author.getId());
-        query.setParameter("name", author.getName());
-        query.executeUpdate();
-
-    }
 }
