@@ -27,6 +27,11 @@ public class GenreServiceIO implements GenreService {
     }
 
     @Override
+    public Optional<Genre> getByName(String name) {
+        return genreRepository.findByName(name);
+    }
+
+    @Override
     public Genre insert(Genre genre) {
         return genreRepository.save(genre);
     }

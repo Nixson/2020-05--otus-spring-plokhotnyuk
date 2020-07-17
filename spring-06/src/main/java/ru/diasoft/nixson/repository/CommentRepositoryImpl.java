@@ -1,6 +1,7 @@
 package ru.diasoft.nixson.repository;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.diasoft.nixson.domain.Comment;
 
 import javax.persistence.EntityManager;
@@ -35,13 +36,7 @@ public class CommentRepositoryImpl implements CommentRepository {
         return Optional.ofNullable(entityManager.find(Comment.class, id));
     }
 
-    @Override
-    public List<Comment> findByBookId(long id) {
-        TypedQuery<Comment> query = entityManager.createQuery("select c from Comment c where c.book.id = :id",Comment.class);
-        query.setParameter("id", id);
-        return query.getResultList();
-    }
-
+    @Transactional
     @Override
     public void deleteById(long id) {
         Query query = entityManager.createQuery("delete from Comment c where c.id = :id");
@@ -53,4 +48,5 @@ public class CommentRepositoryImpl implements CommentRepository {
     public void deleteAll() {
         entityManager.createQuery("delete from Comment").executeUpdate();
     }
+
 }

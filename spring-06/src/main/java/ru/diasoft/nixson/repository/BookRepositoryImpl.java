@@ -26,9 +26,8 @@ public class BookRepositoryImpl implements BookRepository {
     @Transactional
     @Override
     public void deleteById(Long id) {
-        Query query = entityManager.createQuery("delete from Book b where b.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+        Book book = entityManager.find(Book.class,id);
+        entityManager.remove(book);
     }
 
     @Override
@@ -45,39 +44,10 @@ public class BookRepositoryImpl implements BookRepository {
         return query.getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Book> findById(Long id) {
         return Optional.ofNullable(entityManager.find(Book.class, id));
-    }
-
-    @Override
-    public List<Book> findByAuthorId(Long id) {
-        EntityGraph<?> entityGraph = entityManager.getEntityGraph("book-entity-graph");
-        TypedQuery<Book> query = entityManager.createQuery("select b from Author a join Book b on b.author = a where a.id = :id", Book.class);
-        query.setParameter("id", id);
-        query.setHint("javax.persistence.fetchgraph", entityGraph);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Book> findByAuthorName(String name) {
-        TypedQuery<Book> query = entityManager.createQuery("select b from Author a join Book b on b.author = a where a.name like :name", Book.class);
-        query.setParameter("name", "%" + name + "%");
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Book> findByGenreId(Long id) {
-        TypedQuery<Book> query = entityManager.createQuery("select b from Genre g join Book b on b.author = g where g.id = :id", Book.class);
-        query.setParameter("id", id);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Book> findByGenreName(String name) {
-        TypedQuery<Book> query = entityManager.createQuery("select b from Genre g join Book b on b.author = g where g.name like :name", Book.class);
-        query.setParameter("name", "%" + name + "%");
-        return query.getResultList();
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface GenreRepository {
 
     Optional<Genre> findById(long id);
 
-    List<Genre> findByName(String name);
+    Optional<Genre> findByName(String name);
 
     void update(Genre genre);
 }

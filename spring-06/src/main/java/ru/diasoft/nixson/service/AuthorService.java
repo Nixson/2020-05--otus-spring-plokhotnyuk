@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface AuthorService {
     List<Author> getAll();
     Optional<Author> getById(Long id);
+    Optional<Author> getByName(String name);
     Author insert(Author author);
     Optional<Author> getByParam(String authorNameOrId);
 }

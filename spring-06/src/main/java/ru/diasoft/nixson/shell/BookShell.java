@@ -15,22 +15,22 @@ public class BookShell {
 
     @ShellMethod(value = "Find by book name", key = {"list", "all", "l", "getAll"})
     public String getAll() {
-        return bookService.writeList(bookService.getAll());
+        return bookService.writeListAll();
     }
 
     @ShellMethod(value = "Find by book name", key = {"n", "find", "findByName"})
     public String findByName(@ShellOption(defaultValue = "none") String bookName) {
-        return bookService.writeList(bookService.findByName(bookName));
+        return bookService.writeListByName(bookName);
     }
 
     @ShellMethod(value = "Find by author", key = {"a", "author", "findByAuthor"})
     public String findByAuthor(@ShellOption(defaultValue = "none") String authorName) {
-        return bookService.writeList(bookService.findByAuthor(authorName));
+        return bookService.writeListByAuthor(authorName);
     }
 
     @ShellMethod(value = "Find by genre", key = {"g", "genre", "findByGenre"})
     public String findByGenre(@ShellOption(defaultValue = "none") String genreName) {
-        return bookService.writeList(bookService.findByGenre(genreName));
+        return bookService.writeListByGenre(genreName);
     }
 
     @ShellMethod(value = "Add book", key = {"c", "i", "create", "insert"})

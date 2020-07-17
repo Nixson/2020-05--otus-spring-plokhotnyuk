@@ -50,10 +50,10 @@ public class GenreRepositoryImpl implements GenreRepository {
     }
 
     @Override
-    public List<Genre> findByName(String name) {
+    public Optional<Genre> findByName(String name) {
         TypedQuery<Genre> query = entityManager.createQuery("select g from Genre g where g.name like :name", Genre.class);
         query.setParameter("name", "%" + name + "%");
-        return query.getResultList();
+        return Optional.of(query.getSingleResult());
     }
 
     @Override

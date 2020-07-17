@@ -9,7 +9,9 @@ import ru.diasoft.nixson.repository.BookRepository;
 import ru.diasoft.nixson.repository.CommentRepository;
 import ru.diasoft.nixson.util.BundleUtil;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -36,14 +38,28 @@ public class CommentServiceIO implements CommentService {
         commentRepository.save(commentEntity);
     }
 
+    @Transactional
     @Override
-    public List<Comment> getAll() {
-        return commentRepository.findAll();
-    }
-
-    @Override
-    public List<Comment> getByBookId(Long book) {
-        return commentRepository.findByBookId(book);
+    public String listByParam(Long id) {
+        List<Comment> cl;
+        if (id > 0){
+            Optional<Book> book = bookRepository.findById(id);
+            if(book.isPresent()) {
+                cl = book.get().getComments();
+            } else {
+                cl = Collections.emptyList();
+            }
+        } else {
+            cl = commentRepository.findAll();
+        }
+        StringBuilder sb = new StringBuilder();
+        cl.forEach(comment -> sb.append(comment.getId())
+                .append(" [")
+                .append(comment.getBook().getId())
+                .append("] ")
+                .append(comment.getContent())
+                .append("\n"));
+        return sb.toString();
     }
 
     @Transactional

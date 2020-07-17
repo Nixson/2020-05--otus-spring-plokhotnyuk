@@ -9,6 +9,7 @@ import ru.diasoft.nixson.domain.Genre;
 import ru.diasoft.nixson.repository.BookRepository;
 import ru.diasoft.nixson.util.BundleUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,31 @@ public class BookServiceIO implements BookService {
         StringBuilder sb = new StringBuilder();
         bookList.forEach(book -> sb.append(write(book)));
         return sb.toString();
+    }
+
+    @Transactional
+    @Override
+    public String writeListAll() {
+        return writeList(getAll());
+    }
+
+    @Transactional
+    @Override
+    public String writeListByName(String name) {
+        return writeList(findByName(name));
+    }
+
+    @Transactional
+    @Override
+    public String writeListByAuthor(String name) {
+        List<Book> books = findByAuthor(name);
+        return writeList(books);
+    }
+
+    @Transactional
+    @Override
+    public String writeListByGenre(String name) {
+        return writeList(findByGenre(name));
     }
 
     @Override
@@ -114,12 +140,20 @@ public class BookServiceIO implements BookService {
 
     @Override
     public List<Book> findByAuthor(String name) {
-        return bookRepository.findByAuthorName(name);
+        Optional<Author> author = authorService.getByName(name);
+        if(author.isPresent()){
+            return author.get().getBooks();
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public List<Book> findByGenre(String name) {
-        return bookRepository.findByGenreName(name);
+        Optional<Genre> genre = genreService.getByName(name);
+        if(genre.isPresent()){
+            return genre.get().getBooks();
+        }
+        return Collections.emptyList();
     }
 
 }

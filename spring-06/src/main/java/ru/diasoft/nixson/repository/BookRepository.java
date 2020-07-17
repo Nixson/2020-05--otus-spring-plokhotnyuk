@@ -16,13 +16,5 @@ public interface BookRepository {
 
     Optional<Book> findById(Long id);
 
-    List<Book> findByAuthorId(Long id);
-
-    List<Book> findByAuthorName(String name);
-
-    List<Book> findByGenreId(Long id);
-
-    List<Book> findByGenreName(String name);
-
     List<Book> findByParams(String name);
 }

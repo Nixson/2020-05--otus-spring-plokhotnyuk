@@ -26,6 +26,11 @@ public class AuthorServiceIO implements AuthorService {
     }
 
     @Override
+    public Optional<Author> getByName(String name) {
+        return authorRepository.findByName(name);
+    }
+
+    @Override
     public Author insert(Author author) {
         return authorRepository.save(author);
     }

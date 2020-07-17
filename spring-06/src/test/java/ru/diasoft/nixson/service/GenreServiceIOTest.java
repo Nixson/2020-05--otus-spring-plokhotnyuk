@@ -35,6 +35,13 @@ class GenreServiceIOTest {
         verify(genreDao).findById(1L);
     }
 
+    @DisplayName("Получить по name")
+    @Test
+    void getByName() {
+        genreService.getByName("Научная");
+        verify(genreDao).findByName("Научная");
+    }
+
     @Test
     void insert() {
         Genre genre = Genre.builder().id(100L).name("genreName").build();

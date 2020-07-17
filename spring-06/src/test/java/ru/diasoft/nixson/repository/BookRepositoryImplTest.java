@@ -111,19 +111,4 @@ class BookRepositoryImplTest {
         assertThat(bookDao.findByParams("Амбера")).contains(book);
     }
 
-    @DisplayName("Найти по автору")
-    @Test
-    void findByAuthor() {
-        Book book = getBook("Хроники Амбера","Роджер Желязны","Зарубежная фантастика","2000","dessd gs");
-        em.persist(book);
-        assertThat(bookDao.findByAuthorName("Желязны")).contains(book);
-    }
-
-    @DisplayName("Найти по жанру")
-    @Test
-    void findByGenre() {
-        Book book = getBook("Хроники Амбера","Роджер Желязны","Зарубежная фантастика","2000","dessd gs");
-        em.persist(book);
-        assertThat(bookDao.findByGenreName("Зарубежная")).contains(book);
-    }
 }

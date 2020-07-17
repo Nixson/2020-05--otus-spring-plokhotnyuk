@@ -13,6 +13,14 @@ public interface BookService {
 
     String writeList(List<Book> bookList);
 
+    String writeListAll();
+
+    String writeListByName(String name);
+
+    String writeListByAuthor(String name);
+
+    String writeListByGenre(String name);
+
     String write(Book book);
 
     void delete(Long id);

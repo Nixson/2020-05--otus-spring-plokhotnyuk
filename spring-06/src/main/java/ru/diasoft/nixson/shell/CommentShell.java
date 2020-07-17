@@ -16,20 +16,7 @@ public class CommentShell {
 
     @ShellMethod(value = "Comment list", key = {"commentList", "comments", "cm"})
     public String list(@ShellOption(defaultValue = "0") Long book) {
-        List<Comment> cl;
-        if (book > 0){
-            cl = commentService.getByBookId(book);
-        } else {
-            cl = commentService.getAll();
-        }
-        StringBuilder sb = new StringBuilder();
-        cl.forEach(comment -> sb.append(comment.getId())
-                .append(" [")
-                .append(comment.getBook().getId())
-                .append("] ")
-                .append(comment.getContent())
-                .append("\n"));
-        return sb.toString();
+        return commentService.listByParam(book);
     }
 
     @ShellMethod(value = "Add comment", key = {"addComment", "ac"})
@@ -38,7 +25,7 @@ public class CommentShell {
     }
 
     @ShellMethod(value = "Update comment", key = {"updateComment", "uc"})
-    public void updateGenre(long id, String comment) {
+    public void updateComment(long id, String comment) {
         commentService.updateComment(id, comment);
     }
 

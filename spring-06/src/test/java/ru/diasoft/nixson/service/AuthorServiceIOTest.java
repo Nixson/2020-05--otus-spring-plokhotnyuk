@@ -37,6 +37,13 @@ class AuthorServiceIOTest {
         verify(authorDao).findById(1L);
     }
 
+    @DisplayName("Получить по name")
+    @Test
+    void getByName() {
+        authorService.getByName("Желязны");
+        verify(authorDao).findByName("Желязны");
+    }
+
     @DisplayName("Сохранить автора")
     @Test
     void insert() {

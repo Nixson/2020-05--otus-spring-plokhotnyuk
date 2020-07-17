@@ -34,28 +34,31 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     @Transactional
     @Override
     public void deleteById(Long id) {
-        Query query = entityManager.createQuery("delete from Author a where a.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+        Author author = entityManager.find(Author.class,id);
+        entityManager.remove(author);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Author> getAll() {
         return entityManager.createQuery("select a from Author a", Author.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Author> findById(long id) {
         return Optional.ofNullable(entityManager.find(Author.class, id));
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public List<Author> findByName(String name) {
+    public Optional<Author> findByName(String name) {
         TypedQuery<Author> query = entityManager.createQuery("select a from Author a where a.name like :name", Author.class);
         query.setParameter("name", "%" + name + "%");
-        return query.getResultList();
+        return Optional.of(query.getSingleResult());
     }
 
+    @Transactional
     @Override
     public void update(Author author) {
         Query query = entityManager.createQuery("update Author a set a.name = :name where a.id = :id");
