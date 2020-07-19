@@ -35,7 +35,9 @@ public class BookRepositoryImpl implements BookRepository {
     @Transactional
     @Override
     public void delete(Book book) {
-        book = entityManager.merge(book);
+        if(!entityManager.contains(book)) {
+            book = entityManager.merge(book);
+        }
         entityManager.remove(book);
     }
 

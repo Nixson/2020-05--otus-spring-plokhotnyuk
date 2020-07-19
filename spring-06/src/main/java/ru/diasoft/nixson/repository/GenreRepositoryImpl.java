@@ -26,9 +26,13 @@ public class GenreRepositoryImpl implements GenreRepository {
         return entityManager.merge(genre);
     }
 
+    @Transactional
     @Override
     public void delete(Genre genre) {
-        deleteById(genre.getId());
+        if (!entityManager.contains(genre)) {
+            genre = entityManager.merge(genre);
+        }
+        entityManager.remove(genre);
     }
 
     @Transactional
