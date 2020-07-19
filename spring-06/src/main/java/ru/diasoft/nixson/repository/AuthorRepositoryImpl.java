@@ -26,9 +26,11 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         return entityManager.merge(author);
     }
 
+    @Transactional
     @Override
     public void delete(Author author) {
-        deleteById(author.getId());
+        author = entityManager.merge(author);
+        entityManager.remove(author);
     }
 
     @Transactional

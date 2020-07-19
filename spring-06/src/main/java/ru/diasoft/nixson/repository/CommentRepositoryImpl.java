@@ -2,6 +2,7 @@ package ru.diasoft.nixson.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.diasoft.nixson.domain.Author;
 import ru.diasoft.nixson.domain.Comment;
 
 import javax.persistence.EntityManager;
@@ -39,9 +40,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     @Transactional
     @Override
     public void deleteById(long id) {
-        Query query = entityManager.createQuery("delete from Comment c where c.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+        Comment comment = entityManager.find(Comment.class,id);
+        entityManager.remove(comment);
     }
 
     @Override

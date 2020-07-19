@@ -4,7 +4,9 @@ import org.springframework.stereotype.Repository;
 import ru.diasoft.nixson.domain.Book;
 
 import javax.persistence.*;
+
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +28,15 @@ public class BookRepositoryImpl implements BookRepository {
     @Transactional
     @Override
     public void deleteById(Long id) {
-        Book book = entityManager.find(Book.class,id);
+        Book book = entityManager.find(Book.class, id);
         entityManager.remove(book);
     }
 
+    @Transactional
     @Override
     public void delete(Book book) {
-        deleteById(book.getId());
+        book = entityManager.merge(book);
+        entityManager.remove(book);
     }
 
     @Transactional(readOnly = true)
