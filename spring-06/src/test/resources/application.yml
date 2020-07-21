@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:books
+    data: data-test.sql
+
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+application:
+  locale: ru_RU
