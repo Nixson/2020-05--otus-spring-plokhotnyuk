@@ -10,4 +10,6 @@ public interface AuthorService {
     Optional<Author> getById(Long id);
     Author insert(Author author);
     Optional<Author> getByParam(String authorNameOrId);
+    Optional<Author> getByName(String name);
+
 }

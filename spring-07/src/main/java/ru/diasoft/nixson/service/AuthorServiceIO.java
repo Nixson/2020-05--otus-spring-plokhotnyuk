@@ -37,4 +37,9 @@ public class AuthorServiceIO implements AuthorService {
             return getById(Long.valueOf(authorNameOrId));
         return Optional.of(authorRepository.save(Author.builder().name(authorNameOrId).build()));
     }
+
+    @Override
+    public Optional<Author> getByName(String name) {
+        return authorRepository.findByNameContaining(name);
+    }
 }

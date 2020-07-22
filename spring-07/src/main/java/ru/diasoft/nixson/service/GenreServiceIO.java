@@ -38,4 +38,9 @@ public class GenreServiceIO implements GenreService {
             return getById(Long.valueOf(genreNameOrId));
         return Optional.of(genreRepository.save(Genre.builder().name(genreNameOrId).build()));
     }
+
+    @Override
+    public Optional<Genre> getByName(String name) {
+        return genreRepository.findByNameContaining(name);
+    }
 }

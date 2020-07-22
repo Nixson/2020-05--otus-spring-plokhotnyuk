@@ -9,6 +9,7 @@ import ru.diasoft.nixson.domain.Genre;
 import ru.diasoft.nixson.repository.BookRepository;
 import ru.diasoft.nixson.util.BundleUtil;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,6 @@ public class BookServiceIO implements BookService {
         bookRepository.deleteById(id);
     }
 
-    @Transactional
     @Override
     public String update(Long id
             , String bookName
@@ -86,7 +86,6 @@ public class BookServiceIO implements BookService {
         return bundleUtil.get("done");
     }
 
-    @Transactional
     @Override
     public String insert(String bookName, String author, String genre, String year, String description) {
         Book book = Book
@@ -109,17 +108,25 @@ public class BookServiceIO implements BookService {
 
     @Override
     public List<Book> findByName(String name) {
-        return bookRepository.findByName(name);
+        return bookRepository.findByNameContaining(name);
     }
 
     @Override
     public List<Book> findByAuthor(String name) {
-        return bookRepository.findByAuthorName(name);
+        Optional<Author> optionalAuthor = authorService.getByName(name);
+        if(optionalAuthor.isPresent()){
+            return optionalAuthor.get().getBooks();
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public List<Book> findByGenre(String name) {
-        return bookRepository.findByGenreName(name);
+        Optional<Genre> optionalGenre = genreService.getByName(name);
+        if(optionalGenre.isPresent()){
+            return optionalGenre.get().getBooks();
+        }
+        return Collections.emptyList();
     }
 
 }

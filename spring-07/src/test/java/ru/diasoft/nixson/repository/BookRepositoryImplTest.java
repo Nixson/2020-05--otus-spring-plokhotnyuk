@@ -10,6 +10,8 @@ import ru.diasoft.nixson.domain.Author;
 import ru.diasoft.nixson.domain.Book;
 import ru.diasoft.nixson.domain.Genre;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Тестирование BookRepositoryImpl")
@@ -18,6 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BookRepositoryImplTest {
     @Autowired
     private BookRepository bookDao;
+    @Autowired
+    private AuthorRepository authorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
     @Autowired
     private TestEntityManager em;
 
@@ -108,22 +114,6 @@ class BookRepositoryImplTest {
     void findByName() {
         Book book = getBook("Хроники Амбера","Роджер Желязны ","Зарубежная фантастика","2000","dessd gs");
         em.persist(book);
-        assertThat(bookDao.findByName("Амбера")).contains(book);
-    }
-
-    @DisplayName("Найти по автору")
-    @Test
-    void findByAuthor() {
-        Book book = getBook("Хроники Амбера","Роджер Желязны","Зарубежная фантастика","2000","dessd gs");
-        em.persist(book);
-        assertThat(bookDao.findByAuthorName("Желязны")).contains(book);
-    }
-
-    @DisplayName("Найти по жанру")
-    @Test
-    void findByGenre() {
-        Book book = getBook("Хроники Амбера","Роджер Желязны","Зарубежная фантастика","2000","dessd gs");
-        em.persist(book);
-        assertThat(bookDao.findByGenreName("Зарубежная")).contains(book);
+        assertThat(bookDao.findByNameContaining("Амбера")).contains(book);
     }
 }

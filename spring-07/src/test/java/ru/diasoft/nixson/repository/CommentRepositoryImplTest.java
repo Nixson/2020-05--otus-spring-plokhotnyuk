@@ -22,6 +22,9 @@ class CommentRepositoryImplTest {
     private CommentRepository commentRepository;
 
     @Autowired
+    private BookRepository bookRepository;
+
+    @Autowired
     private TestEntityManager em;
 
     private Book getBook(String name, String author, String genre, String year, String desc) {
@@ -84,7 +87,7 @@ class CommentRepositoryImplTest {
         Comment comment1 = Comment.builder().content("COMMENT 1").book(book).build();
         em.persist(comment1);
 
-        assertThat(commentRepository.findByBook_Id(book.getId()))
+        assertThat(bookRepository.findById(book.getId()).get().getComments())
                 .containsOnly(comment1);
     }
 

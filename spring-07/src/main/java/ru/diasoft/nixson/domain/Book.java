@@ -3,6 +3,7 @@ package ru.diasoft.nixson.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -33,4 +34,7 @@ public class Book {
 
     @Column(name = "description", unique = false)
     private String description;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="book")
+    private List<Comment> comments;
 }

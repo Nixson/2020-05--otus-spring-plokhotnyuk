@@ -14,7 +14,4 @@ public interface CommentRepository extends CrudRepository<Comment,Long> {
     @EntityGraph(attributePaths = {"book"})
     @Override
     Iterable<Comment> findAll();
-
-    @EntityGraph(attributePaths = {"book"})
-    List<Comment> findByBook_Id(long id);
 }
