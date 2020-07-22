@@ -31,14 +31,6 @@ public class GenreServiceIO implements GenreService {
         return genreRepository.save(genre);
     }
 
-    @Transactional
-    @Override
-    public Optional<Genre> getByParam(String genreNameOrId) {
-        if (NumberUtils.isDigits(genreNameOrId))
-            return getById(Long.valueOf(genreNameOrId));
-        return Optional.of(genreRepository.save(Genre.builder().name(genreNameOrId).build()));
-    }
-
     @Override
     public Optional<Genre> getByName(String name) {
         return genreRepository.findByNameContaining(name);

@@ -12,7 +12,5 @@ public interface GenreService {
 
     Genre insert(Genre genre);
 
-    Optional<Genre> getByParam(String genreNameOrId);
-
     Optional<Genre> getByName(String name);
 }
