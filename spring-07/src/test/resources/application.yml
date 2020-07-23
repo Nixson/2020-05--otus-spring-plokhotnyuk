@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:books
+  shell:
+    interactive:
+      enabled: false
+
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+application:
+  locale: ru_RU
