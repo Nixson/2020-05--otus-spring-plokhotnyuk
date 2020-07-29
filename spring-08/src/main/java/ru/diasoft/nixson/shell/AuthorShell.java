@@ -17,7 +17,7 @@ public class AuthorShell {
         return sb.toString();
     }
 
-    @ShellMethod(value = "Add author to book", key = {"authorAdd", "ac", "addAuthor"})
+    @ShellMethod(value = "Add author to book", key = {"authorAdd", "ad", "addAuthor"})
     public String addAuthor(String bookId, String name) {
         return authorService.insert(bookId,name);
     }

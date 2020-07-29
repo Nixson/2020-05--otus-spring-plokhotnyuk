@@ -14,28 +14,28 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class GenreServiceIO implements GenreService {
-    private final GenreRepository genreRepository;
+    private final GenreServiceDB genreServiceDB;
 
     @Override
     public Iterable<Genre> getAll() {
-        return genreRepository.findAll();
+        return genreServiceDB.getAll();
     }
 
     @Override
     public String insert(String bookId, String name) {
-        genreRepository.add(bookId, Genre.builder().name(name).build());
+        genreServiceDB.insert(bookId,name);
         return "done";
     }
 
     @Override
     public String update(String id, String name) {
-        genreRepository.update(id, Genre.builder().name(name).build());
+        genreServiceDB.update(id,name);
         return "done";
     }
 
     @Override
     public String deleteById(String id) {
-        genreRepository.deleteById(id);
+        genreServiceDB.delete(id);
         return "done";
     }
 

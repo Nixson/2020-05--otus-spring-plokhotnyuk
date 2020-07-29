@@ -17,36 +17,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class CommentServiceIO implements CommentService {
-    private final CommentRepository commentRepository;
-    private final BookRepository bookRepository;
+    private final CommentServiceDB commentServiceDB;
 
     @Override
     public void createComment(String bookId, String comment) {
-        commentRepository.add(bookId, Comment.builder().content(comment).build());
+        commentServiceDB.insert(bookId,comment);
     }
 
     @Override
     public void updateComment(String commentId, String comment) {
-        commentRepository.update(commentId, Comment.builder().content(comment).build());
+        commentServiceDB.update(commentId,comment);
     }
 
     @Override
     public Iterable<Comment> getAll() {
-        return commentRepository.findAll();
+        return commentServiceDB.getAll();
     }
 
     @Override
     public List<Comment> getByBookId(String book) {
-        Optional<Book> book1 = bookRepository.findById(book);
-        if(book1.isPresent()) {
-            return book1.get().getComments();
-        }
-        return Collections.emptyList();
+        return commentServiceDB.getByBookId(book);
     }
 
     @Override
     public void deleteById(String id) {
-        commentRepository.deleteById(id);
+        commentServiceDB.delete(id);
     }
 
 }

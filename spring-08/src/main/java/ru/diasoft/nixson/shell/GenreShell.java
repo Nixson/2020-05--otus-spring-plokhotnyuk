@@ -23,12 +23,12 @@ public class GenreShell {
         return genreService.insert(bookId,name);
     }
 
-    @ShellMethod(value = "Modify genre", key = {"genreModify", "am", "modifyGenre"})
+    @ShellMethod(value = "Modify genre", key = {"genreModify", "gm", "modifyGenre"})
     public String modifyGenre(String id, String name) {
         return genreService.update(id,name);
     }
 
-    @ShellMethod(value = "Remove genre", key = {"genreRemove", "ar", "removeGenre"})
+    @ShellMethod(value = "Remove genre", key = {"genreRemove", "gr", "removeGenre"})
     public String removeGenre(String id) {
         return genreService.deleteById(id);
     }

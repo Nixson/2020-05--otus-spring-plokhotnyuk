@@ -2,14 +2,11 @@ package ru.diasoft.nixson.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.diasoft.nixson.domain.Author;
 import ru.diasoft.nixson.domain.Book;
 import ru.diasoft.nixson.domain.Genre;
-import ru.diasoft.nixson.repository.BookRepository;
 import ru.diasoft.nixson.util.BundleUtil;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,18 +14,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookServiceIO implements BookService {
     private final BundleUtil bundleUtil;
-    private final BookRepository bookRepository;
-    private final AuthorService authorService;
-    private final GenreService genreService;
+    private final BookServiceDB bookServiceDB;
 
     @Override
     public Iterable<Book> getAll() {
-        return bookRepository.findAll();
+        return bookServiceDB.getAll();
     }
 
     @Override
     public Optional<Book> getById(String id) {
-        return bookRepository.findById(id);
+        return bookServiceDB.getById(id);
     }
 
 
@@ -62,7 +57,7 @@ public class BookServiceIO implements BookService {
 
     @Override
     public void delete(String id) {
-        bookRepository.deleteById(id);
+        bookServiceDB.delete(id);
     }
 
     @Override
@@ -70,38 +65,23 @@ public class BookServiceIO implements BookService {
             , String bookName
             , String year
             , String description) {
-        Optional<Book> bookOptional = getById(id);
+        Optional<Book> bookOptional = bookServiceDB.getById(id);
         if (bookOptional.isEmpty()) {
             return bundleUtil.get("error-data");
         }
-        Book book = bookOptional.get();
-        if (!bookName.isEmpty()) {
-            book.setName(bookName);
-        }
-        if (!description.isEmpty()) {
-            book.setDescription(description);
-        }
-        bookRepository.save(book);
+        bookServiceDB.update(id,bookName,year,description);
         return bundleUtil.get("done");
     }
 
     @Override
     public String insert(String bookName, String author, String genre, String year, String description) {
-        Book book = Book
-                .builder()
-                .name(bookName)
-                .year(year)
-                .description(description)
-                .build();
-        bookRepository.save(book);
-        authorService.insert(book.getId(),author);
-        genreService.insert(book.getId(),genre);
+        bookServiceDB.insert(bookName,author,genre,year,description);
         return bundleUtil.get("done");
     }
 
     @Override
     public List<Book> findByName(String name) {
-        return bookRepository.findByNameContains(name);
+        return bookServiceDB.findByName(name);
     }
 
 }

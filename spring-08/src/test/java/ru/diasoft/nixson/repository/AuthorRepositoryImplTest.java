@@ -1,5 +1,6 @@
 package ru.diasoft.nixson.repository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ class AuthorRepositoryImplTest {
     private AuthorRepository authorRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @BeforeEach
+    void setUp() {
+        mongoTemplate.dropCollection(Book.class);
+    }
 
     @DisplayName("Добавить автора в книгу")
     @Test
@@ -58,21 +64,19 @@ class AuthorRepositoryImplTest {
     @Test
     void updateTest() {
         Book book =  mongoTemplate.insert(Book.builder()
-                .name("Test book 2")
+                .name("Update book 3")
                 .authors(List.of(Author.builder()
                         .id(UUID.randomUUID().toString())
-                        .name("author 1").build()))
+                        .name("update author 1").build()))
                 .build());
 
         final Author author1 = book.getAuthors().stream().findFirst().orElseThrow(RuntimeException::new);
-        final Author newAuthor = Author.builder().name("newAuthor").build();
+        final Author newAuthor = Author.builder().name("new Author update").build();
 
         authorRepository.update(author1.getId(), newAuthor);
-
         Book foundBook = mongoTemplate.findOne(new Query(Criteria
                 .where("_id").is(book.getId())
                 .and("authors._id").is(author1.getId())), Book.class);
-        assert foundBook != null;
 
         assertThat(foundBook.getAuthors())
                 .extracting(Author::getName)
@@ -84,11 +88,11 @@ class AuthorRepositoryImplTest {
     void findAllTest() {
         List<Author> authors1 = List.of(Author.builder()
                 .id(UUID.randomUUID().toString())
-                .name("Ivanov").build());
+                .name("Zelazny").build());
 
         List<Author> authors2 = List.of(Author.builder()
                 .id(UUID.randomUUID().toString())
-                .name("Petrov").build());
+                .name("Volkov").build());
 
         mongoTemplate.insert(Book.builder()
                 .name("Test book 1")
