@@ -10,3 +10,4 @@
 - [Работа #6](https://github.com/Nixson/2020-05-otus-spring-plokhotnyuk/tree/master/spring-06)
 - [Работа #7](https://github.com/Nixson/2020-05-otus-spring-plokhotnyuk/tree/master/spring-07)
 - [Работа #8](https://github.com/Nixson/2020-05-otus-spring-plokhotnyuk/tree/master/spring-08)
+- [Работа #10](https://github.com/Nixson/2020-05-otus-spring-plokhotnyuk/tree/master/spring-10)
