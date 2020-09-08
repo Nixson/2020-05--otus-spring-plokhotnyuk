@@ -1,0 +1,42 @@
+html, body {
+    height: 100%;
+}
+.spin {
+    animation: spin 2s infinite linear;
+}
+.modalSlg {
+    width: 100%;
+}
+.preLog {
+    width: 100%;
+    overflow: auto;
+    border: 1px solid #8c8c8c;
+}
+@keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}
+@keyframes slideTop {
+    0% {
+        transform: translateY(-100%) scale(0.3,0.3);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%) scale(1,1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0%) scale(1,1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-100%) scale(0.3,0.3);
+        opacity: 0;
+    }
+}
