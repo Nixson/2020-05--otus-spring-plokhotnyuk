@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+    <changeSet id="0001-books-data" author="nixson">
+        <loadUpdateData
+                tableName="books"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0001-books.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0002-users-data" author="nixson">
+        <loadUpdateData
+                tableName="users"
+                primaryKey="login"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0002-users.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0003-authorities-data" author="nixson">
+        <loadUpdateData
+                tableName="authorities"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0003-authorities.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0004-acl-sid" author="nixson">
+        <loadUpdateData
+                tableName="acl_sid"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0004-acl-sid.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0005-acl-class" author="nixson">
+        <loadUpdateData
+                tableName="acl_class"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0005-acl-class.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0006-acl-object_identity" author="nixson">
+        <loadUpdateData
+                tableName="acl_object_identity"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0006-acl-object_identity.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0007-acl-entry" author="nixson">
+        <loadUpdateData
+                tableName="acl_entry"
+                primaryKey="id"
+                separator=";"
+                file="/db/changelog/0.0.1/data/0007-acl_entry.csv">
+        </loadUpdateData>
+    </changeSet>
+
+</databaseChangeLog>
