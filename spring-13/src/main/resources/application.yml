@@ -1,0 +1,27 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  datasource:
+    url: jdbc:h2:mem:books
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate.format_sql: true
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+server:
+  port: 8080
