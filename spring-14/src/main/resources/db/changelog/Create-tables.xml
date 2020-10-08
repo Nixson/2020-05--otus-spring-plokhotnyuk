@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="book" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="book"/>
+            </not>
+        </preConditions>
+        <createTable tableName="book">
+            <column name="id" type="bigint" remarks="Идентификатор книги" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_book"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Наименование книги">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="varchar(4)" remarks="Год написания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)" remarks="Описание">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="author" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="author"/>
+            </not>
+        </preConditions>
+        <createTable tableName="author">
+            <column name="id" type="bigint" remarks="Идентификатор автора" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_author"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="ФИО автора">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="book-author" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="book_author"/>
+            </not>
+        </preConditions>
+        <createTable tableName="book_author">
+            <column name="id" type="bigint" remarks="Идентификатор" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_book_author"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="genre" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="genre"/>
+            </not>
+        </preConditions>
+        <createTable tableName="genre">
+            <column name="id" type="bigint" remarks="Идентификатор жанра" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_genre"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Наименование жанра">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="book-genre" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="book_genre"/>
+            </not>
+        </preConditions>
+        <createTable tableName="book_genre">
+            <column name="id" type="bigint" remarks="Идентификатор" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_book_genre"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="author-book-fk" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk-author-book"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="book_id" constraintName="fk-author-book"
+                                 referencedTableName="book"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="genre-book-fk" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk-genre-book"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="book_genre" baseColumnNames="book_id" constraintName="fk-genre-genre"
+                                 referencedTableName="book"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="author-fk" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk-book-author"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="book_author" baseColumnNames="author_id" constraintName="fk-book-author"
+                                 referencedTableName="author"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="book-genre-fk" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk-book-genre"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="book_genre" baseColumnNames="genre_id" constraintName="fk-book-genre"
+                                 referencedTableName="genre"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

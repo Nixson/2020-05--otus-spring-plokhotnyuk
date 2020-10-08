@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <book id="1" name="Nine princes in Amber" year="1970" description="Престол таинственного Янтарного королевства - приз победителю..."/>
+    <book id="2" name="The warrior`s apperentice" year="1986" description="Это Вселенная могущественных супердержав и долгих жестоких войн"/>
+
+    <author id="1" name="Zelazny Roger"/>
+    <author id="2" name="Saukov"/>
+    <author id="3" name="Lois McMaster"/>
+    <author id="4" name="Bujold"/>
+
+    <genre id="1" name="Novel"/>
+    <genre id="2" name="Fantasy"/>
+    <genre id="3" name="Fantasy"/>
+    <genre id="4" name="Novel"/>
+    <genre id="5" name="Science fiction"/>
+
+    <book_author id="1" book_id="1" author_id="1"/>
+    <book_author id="2" book_id="1" author_id="2"/>
+    <book_author id="3" book_id="2" author_id="3"/>
+    <book_author id="4" book_id="2" author_id="4"/>
+
+    <book_genre id="1" book_id="1" genre_id="1"/>
+    <book_genre id="2" book_id="1" genre_id="2"/>
+    <book_genre id="3" book_id="2" genre_id="3"/>
+    <book_genre id="4" book_id="2" genre_id="4"/>
+    <book_genre id="5" book_id="2" genre_id="5"/>
+</dataset>
