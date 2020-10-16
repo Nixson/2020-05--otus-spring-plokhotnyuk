@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col">
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-success action" data-action="create">Append</button>
+        </div>
+        <div class="list-group" id="bookList">{{bookList}}</div>
+    </div>
+    <div class="col">
+        <div class="d-none" id="bookControl">
+            <div class="d-flex justify-content-end mb-3">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success action" data-action="edit">Edit</button>
+                    <button type="button" class="btn btn-danger action" data-action="remove">Remove</button>
+                </div>
+            </div>
+        </div>
+        <form id="bookView"></form>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="bookAddSubElement">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add element</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="bookAddName" class="col-form-label" id="bookAddNameLabel">Name</label>
+                        <input type="text" class="form-control" id="bookAddName">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary action" data-action="addSubelement">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
