@@ -1,0 +1,36 @@
+spring:
+  data:
+    rest:
+      base-path: /data
+    mongodb:
+      host: ${DB_HOST}
+      port: ${DB_PORT}
+      database: ${DB_NAME}
+  resources:
+    static-locations: classpath:/static
+
+server:
+  port: 9000
+
+mongock:
+  change-logs-scan-package:
+    - ru.diasoft.nixson.changelogs
+  enabled: true
+  runner-type: InitializingBean
+
+logging:
+  file:
+    name: log.txt
+  level:
+    root: info
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,logfile,metrics

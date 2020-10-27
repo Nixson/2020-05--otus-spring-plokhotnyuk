@@ -1,0 +1,26 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database: booking
+  messages:
+    basename: messages
+  mongodb:
+    embedded:
+      version: 4.0.2
+
+mongock:
+  change-logs-scan-package:
+    - ru.diasoft.nixson.changelogs
+  enabled: false
+  runner-type: InitializingBean
+
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+application:
+  locale: ru_RU
