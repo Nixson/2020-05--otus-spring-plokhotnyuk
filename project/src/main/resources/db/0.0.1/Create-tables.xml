@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="0001-users" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users">
+            <column name="login" type="varchar(100)" remarks="Логин пользователя" autoIncrement="false">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="password" type="varchar(100)" remarks="Пароль пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Имя пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="command" type="bigint" remarks="Команда">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locked" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0002-authorities" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authorities"/>
+            </not>
+        </preConditions>
+        <createTable tableName="authorities">
+            <column name="id" type="bigint"  autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_authorities"/>
+            </column>
+            <column name="authority" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_login" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="0003-user-authority-fk" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk-user-authority"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="authorities" baseColumnNames="user_login" constraintName="fk-user-authority"
+                                 referencedTableName="users"
+                                 referencedColumnNames="login" onDelete="CASCADE"/>
+    </changeSet>
+
+
+    <changeSet id="0004-sprint" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sprint"/>
+            </not>
+        </preConditions>
+        <createTable tableName="sprint">
+            <column name="id" type="bigint" remarks="Идентификатор спринта" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_sprint"/>
+            </column>
+            <column name="startday" type="timestamp" remarks="Дата начала">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endday" type="timestamp" remarks="Дата окончания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="command" type="bigint" remarks="Команда">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0005-command" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="command"/>
+            </not>
+        </preConditions>
+        <createTable tableName="command">
+            <column name="id" type="bigint" remarks="Идентификатор команды" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_command"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Наименование команды">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0006-task" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="task"/>
+            </not>
+        </preConditions>
+        <createTable tableName="task">
+            <column name="id" type="bigint" remarks="Идентификатор задачи" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_task"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Описание задачи">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dtime" type="int" remarks="Емкость задачи">
+                <constraints nullable="false"/>
+            </column>
+            <column name="command" type="bigint" remarks="Идентификатор команды">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sprint" type="bigint" remarks="Идентификатор спринта">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0006-taskburning" author="nixson">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="taskburning"/>
+            </not>
+        </preConditions>
+        <createTable tableName="taskburning">
+            <column name="id" type="bigint" remarks="Идентификатор сгорания" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_task_burning"/>
+            </column>
+            <column name="task" type="bigint" remarks="Идентификатор задачи">
+                <constraints nullable="false"/>
+            </column>
+            <column name="usr" type="varchar(100)" remarks="Идентификатор сотрудника">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dtime" type="int" remarks="Количество сгоревших затрат">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bdate" type="timestamp" remarks="Дата сгорания">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

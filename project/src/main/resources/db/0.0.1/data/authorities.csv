@@ -1,0 +1,4 @@
+id;authority;user_login
+1;ROLE_USER;user
+2;ROLE_USER;nx
+3;ROLE_ADMIN;nx

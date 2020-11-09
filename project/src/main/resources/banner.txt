@@ -1,0 +1,7 @@
+${Ansi.GREEN}      :::::::: ${AnsiColor.WHITE} :::::::::  :::::::::  ::::::::::: ::::    ::: :::::::::::
+${Ansi.GREEN}    :+:    :+:${AnsiColor.WHITE} :+:    :+: :+:    :+:     :+:     :+:+:   :+:     :+:
+${Ansi.GREEN}   +:+       ${AnsiColor.WHITE} +:+    +:+ +:+    +:+     +:+     :+:+:+  +:+     +:+
+${Ansi.GREEN}  +#++:++#++${AnsiColor.WHITE} +#++:++#+  +#++:++#:      +#+     +#+ +:+ +#+     +#+
+${Ansi.GREEN}        +#+${AnsiColor.WHITE} +#+        +#+    +#+     +#+     +#+  +#+#+#     +#+
+${Ansi.GREEN}#+#    #+#${AnsiColor.WHITE} #+#        #+#    #+#     #+#     #+#   #+#+#     #+#
+${Ansi.GREEN}########${AnsiColor.WHITE}  ###        ###    ### ########### ###    ####     ###
