@@ -1,0 +1,3 @@
+login;password;name;command;expired;locked;enabled
+user;$2y$13$Ld1sH7jUAuEZ6j3SARg3/Ot14qLEOwVGZ61z9VbRrpm8WMqoliyvG;Пользователь 1;1;false;false;true
+nx;$2y$13$8yQfpxDRZuyD8N9q9cd/YeYa47pYp8NzivniA6Qi5YoLc9BZYk/ta;САМ;1;false;false;true

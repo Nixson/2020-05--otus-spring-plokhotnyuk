@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+    <changeSet id="0001-users-data" author="nixson">
+        <loadUpdateData
+                tableName="users"
+                primaryKey="login"
+                separator=";"
+                file="/db/0.0.1/data/users.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0002-authorities-data" author="nixson">
+        <loadUpdateData
+                tableName="authorities"
+                primaryKey="id"
+                separator=";"
+                file="/db/0.0.1/data/authorities.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0003-sprint-data" author="nixson">
+        <loadUpdateData
+                tableName="sprint"
+                primaryKey="id"
+                separator=";"
+                file="/db/0.0.1/data/sprint.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0004-command-data" author="nixson">
+        <loadUpdateData
+                tableName="command"
+                primaryKey="id"
+                separator=";"
+                file="/db/0.0.1/data/command.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0005-task-data" author="nixson">
+        <loadUpdateData
+                tableName="task"
+                primaryKey="id"
+                separator=";"
+                file="/db/0.0.1/data/task.csv">
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="0006-burning-data" author="nixson">
+        <loadUpdateData
+                tableName="taskburning"
+                primaryKey="id"
+                separator=";"
+                file="/db/0.0.1/data/task-burning.csv">
+        </loadUpdateData>
+    </changeSet>
+
+
+</databaseChangeLog>

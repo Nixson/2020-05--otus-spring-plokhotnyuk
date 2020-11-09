@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-10">
+        <h1>Список задач в спринте "{{commandName}}" {{sprintStartday}} - {{sprintEndday}}</h1>
+    </div>
+    <div class="col-2 text-right">
+        <button class="btn btn-outline-success action" data-action="addTask">Добавить задачу</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Часов</th>
+                <th>Списано</th>
+                <th width="120px">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>{{tasks}}</tbody>
+        </table>
+    </div>
+    <div class="hidden" id="burning">
+        <button class="btn btn-outline-success action" data-action="addBurn">Списать затраты</button>
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Сотрудник</th>
+                <th>Кол-во</th>
+                <th width="60px">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="addTask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Добавление задачи</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="taskName" class="col-sm-4 col-form-label">Название</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="taskName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="taskDtime" class="col-sm-4 col-form-label">Трудозатраты</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="taskDtime">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary action" data-action="saveTask">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="addBurn">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Списать затраты</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="burnDate" class="col-sm-4 col-form-label">Дата списания</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="burnDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="burnDtime" class="col-sm-4 col-form-label">Трудозатраты</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="burnDtime">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary action" data-action="saveBurn">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
